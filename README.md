@@ -12,6 +12,7 @@
 ### API Reference
 
 - [Enum: `xe_Code`](#enum-xecode)
+- [Function: `xe_fatal`](#function-xefatal)
 
 ---
 
@@ -137,6 +138,61 @@ This enum contains all error codes which can be used as return data for library 
 | `xe_TESTSKIP` | `100` | Special code used by test harnesses to identify skipped tests. |
 | `xe_TESTTODO` | `101` | Special code used by test harnesses to identify todo tests. |
 | `xe_TESTFORCE` | `102` | Special code used by test harnesses identify tests that were force failed. |
+
+### History
+
+| Version Number | Comments |
+|---|---|
+| `v1.0.0` | Added to public API. |
+
+---
+
+## Function: `xe_fatal`
+
+```c
+void xe_fatal(xe_Code code, char *explain);
+```
+
+Immediately terminate the current process with the given error code and explaination, which will be reported to `stderr` before returning.
+
+### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| `code` | `xe_Code` | The error code that elicited this fatal condition. It will be reported to `stderr` before the process is terminated. |
+| `explain` | `char *` | An explainatory string, which describes the conditions that lead to the fatal error. This string will be reported to `stderr` before the process is terminated. |
+
+### Example
+
+The following example shows what happens when `xe_fatal` is called.
+
+```c
+/*
+throw_an_error.c
+
+Throw an error using `xe_fatal`.
+*/
+
+#include <stdio.h>
+#include <xerrh.h>
+
+int main(int argc, char *argv[]) {
+
+    xe_fatal(xe_DIVZ, "Attempted to divide by zero!");
+
+    printf("You won't see this text!");
+
+    return 0;
+
+}
+```
+
+```console
+foo@BAR:~/my_projects/test_project$ ./throw_an_error.out
+ERROR [8]: Attempted to divide by zero!
+foo@BAR:~/my_projects/test_project$ echo $?
+8
+```
 
 ### History
 
