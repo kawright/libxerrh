@@ -10,7 +10,7 @@ TEST_BINS = build/tests/test_fatal \
 
 tests: $(TEST_BINS)
 
-library: build/lib/xerrh.a
+library: build/lib/libxerrh.a
 
 # T E S T    B I N A R I E S
 
@@ -29,7 +29,7 @@ build/obj/%.o: tests/%.c
 # L I B R A R I E S
 
 build/lib/libxerrh.a: build/obj/xerrh.o
-	@ echo -n ARCHIVING build/lib/libxerrh.a
+	@ echo -n ARCHIVING build/lib/libxerrh.a...
 	@ ar rcs build/lib/libxerrh.a build/obj/xerrh.o
 	@ echo DONE!
 
@@ -44,13 +44,13 @@ install: library
 	@ echo -n COPYING FILES...
 	@ cp build/lib/libxerrh.a /usr/local/lib/libxerrh.a
 	@ cp src/xerrh.h /usr/local/include/xerrh.h
-	@ echo -n DONE!
+	@ echo DONE!
 
 uninstall:
 	@ echo -n DELETING FILES...
 	@ rm -f /usr/local/lib/libxerrh.a
 	@ rm -f /usr/local/include/xerrh.h
-	@ echo -n DONE!
+	@ echo DONE!
 
 clean:
 	@ echo -n CLEANING BUILD DIRECTORY...
