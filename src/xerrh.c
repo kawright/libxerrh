@@ -16,6 +16,6 @@ void xe_fatal(xe_Code code, char *explain) {
 
 void xe_warn(xe_Code code, char *explain) {
 
-    fprintf(stderr, "ERROR [%d]: %s\n", code, explain);
+    fprintf(stderr, "WARNING [%d]: %s\n", code, explain);
     return;
 }
