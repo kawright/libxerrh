@@ -6,6 +6,8 @@
 
 - [What is `libxerrh`?](#what-is-libxerrh)
 - [How do I install `libxerrh`?](#how-do-i-install-libxerrh)
+- [Project Manifest](#project-manifest)
+- [Running Tests](#running-tests)
 
 ---
 
@@ -62,3 +64,18 @@ This project consists of the following files and folders:
 | `LICENSE` | `v1.0.0` | Contains the text of the license used for this project. |
 | `Makefile` | `v1.0.0` | The project `Makefile` file. |
 
+## Running Tests
+
+`libxerrh` includes a handful of small test programs you can build and then run using the included Python test harness. To build the tests, run the following:
+
+```console
+foo@BAR:~/my_projects/libxerrh$ make tests
+```
+
+After building the tests, you can either run them one at a time (an exit code of `0` indicates success), or all at once using the included Python test harness `runtests.py`:
+
+```console
+foo@BAR:~/my_projects/libxerrh$ ./runtests.py
+```
+
+If you want to skip any of the tests, update the respective `.c` file to immediately return the exit code `100`.
