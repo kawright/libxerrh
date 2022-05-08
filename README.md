@@ -11,8 +11,9 @@
 
 ### API Reference
 
-- [Enum: `xe_Code`](#enum-xecode)
-- [Function: `xe_fatal`](#function-xefatal)
+- [Enum: `xe_Code`](#enum-xe_code)
+- [Function: `xe_fatal`](#function-xe_fatal)
+- [Function: `xe_warn`](#function-xe_warn)
 
 ---
 
@@ -180,18 +181,78 @@ int main(int argc, char *argv[]) {
 
     xe_fatal(xe_DIVZ, "Attempted to divide by zero!");
 
-    printf("You won't see this text!");
+    printf("You won't see this text!\n");
 
     return 0;
 
 }
 ```
 
+Running the compiled program results in:
+
 ```console
 foo@BAR:~/my_projects/test_project$ ./throw_an_error.out
 ERROR [8]: Attempted to divide by zero!
 foo@BAR:~/my_projects/test_project$ echo $?
 8
+```
+
+### History
+
+| Version Number | Comments |
+|---|---|
+| `v1.0.0` | Added to public API. |
+
+---
+
+## Function: `xe_warn`
+
+```c
+void xe_warn(xe_Code code, char *explain);
+```
+
+Report a warning condition to `stderr`.
+
+### Parameters
+
+| Name | Type | Description |
+|---|---|---|
+| `code` | `xe_Code` | The error code that elicited this warning condition. It will be reported to `stderr`. |
+| `explain` | `char *` | An explainatory string, which describes the conditions that lead to the fatal error. This string will be reported to `stderr`. |
+
+### Example
+
+The following example shows what happens when `xe_fatal` is called.
+
+```c
+/*
+report_a_warning.c
+
+Report a warning using `xe_warn`.
+*/
+
+#include <stdio.h>
+#include <xerrh.h>
+
+int main(int argc, char *argv[]) {
+
+    xe_warn(xe_DIVZ, "Attempted to divide by zero!");
+
+    printf("You will see this text!\n");
+
+    return 0;
+
+}
+```
+
+Running the compiled program results in:
+
+```console
+foo@BAR:~/my_projects/test_project$ ./throw_an_error.out
+WARNING [8]: Attempted to divide by zero!
+You will see this text!
+foo@BAR:~/my_projects/test_project$ echo $?
+0
 ```
 
 ### History
