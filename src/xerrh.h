@@ -65,8 +65,20 @@ typedef enum {
 
     // Testing:
     xe_TESTSKIP = 100,
-    xe_TESTTODO = 101
+    xe_TESTTODO = 101,
+    xe_FORCE = 102
 
 } xe_Code;
+
+/*
+Immediately terminate the current process with the given error code and 
+explaination, which will be reported to `stderr` before returning.
+*/
+void xe_fatal(xe_Code code, char *explain);
+
+/*
+Report a warning to stderr.
+*/
+void xe_warn(xe_Code code, char *explain);
 
 #endif
