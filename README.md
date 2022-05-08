@@ -44,3 +44,21 @@ foo@BAR:~/my_projects/libxerrh$ make library
 You can find the library file that was created in the `build/lib` directory.
 
 Finally, you can always find the library and header files for each release in its tag information on the GitHub page, available to download in a zip file.
+
+## Project Manifest
+
+This project consists of the following files and folders:
+
+| File/Directory Path | Version Added | Description |
+|---|---|---|
+| `src` |  `v1.0.0` | This folder contains all source and header files in the `libxerrh` library. |
+| `src/xerrh.c` | `v1.0.0` | This file contains the implementation of all public API members of the `libxerrh` library. |
+| `src/xerrh.h` | `v1.0.0` | The header file for the `libxerrh` library. |
+| `tests` | `v1.0.0` | This folder contains test cases that are written in C and can be run using the `runtests.py` script. |
+| `tests/test_fatal.c` | `v1.0.0` | Test case for ensuring `xe_fatal` works correctly. |
+| `tests/test_warn.c` |  `v1.0.0` | Test case for ensuring `xe_warn` works correctly. |
+| `.gitignore` | `v1.0.0` | The project `.gitignore` file. |
+| `CHANGELOG.md` | `v1.0.0` | The project changelog file. |
+| `LICENSE` | `v1.0.0` | Contains the text of the license used for this project. |
+| `Makefile` | `v1.0.0` | The project `Makefile` file. |
+
